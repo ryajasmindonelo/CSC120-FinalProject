@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Start the game
         System.out.println("Welcome");
         System.out.println("Would you like to read the instructions before starting? Type 'Yes' or 'No':");
         String userInput = sc.nextLine().toLowerCase();
@@ -25,7 +24,6 @@ public class Main {
 
         System.out.println("Storyline: INTRODUCTION TO GAME.");
 
-        // Create a Robber instance
         robber robber = new robber();
 
         String action = "";
@@ -34,36 +32,24 @@ public class Main {
             System.out.println("Options: 'walk', 'grab', 'attack', 'steal', 'exit'");
             action = sc.nextLine().toLowerCase();
 
-            switch (action) {
-                case "walk":
-                    System.out.println("Choose a direction (North, South, East, West):");
-                    String direction = sc.nextLine();
-                    robber.walk(direction);
-                    break;
-
-                case "grab":
-                    System.out.println("What would you like to grab?");
-                    String item = sc.nextLine();
-                    robber.grab(item);
-                    break;
-
-                case "attack":
-                    System.out.println("What are you attacking with?");
-                    String weapon = sc.nextLine();
-                    robber.attack(weapon);
-                    break;
-
-                case "steal":
-                    robber.stealDiamond();
-                    break;
-
-                case "exit":
-                    System.out.println("Exiting the game. Goodbye!");
-                    break;
-
-                default:
-                    System.out.println("Invalid action. Please choose: 'walk', 'grab', 'attack', 'steal', or 'exit'.");
-                    break;
+            if (action.equals("walk")) {
+                System.out.println("Choose a direction (North, South, East, West):");
+                String direction = sc.nextLine();
+                robber.walk(direction);
+            } else if (action.equals("grab")) {
+                System.out.println("What would you like to grab?");
+                String item = sc.nextLine();
+                robber.grab(item);
+            } else if (action.equals("attack")) {
+                System.out.println("What are you attacking with?");
+                String weapon = sc.nextLine();
+                robber.attack(weapon);
+            } else if (action.equals("steal")) {
+                robber.stealDiamond();
+            } else if (action.equals("exit")) {
+                System.out.println("Exiting the game. Goodbye!");
+            } else {
+                System.out.println("Invalid action. Please choose: 'walk', 'grab', 'attack', 'steal', or 'exit'.");
             }
         }
 
