@@ -42,8 +42,8 @@ public class Main {
                 robber.grab(item);
             } else if (action.equals("attack")) {
                 System.out.println("What are you attacking with?");
-                String weapon = sc.nextLine();
-                robber.attack(weapon);
+                String weaponToUse = sc.nextLine();
+                robber.attack(weaponToUse);
             } else if (action.equals("steal")) {
                 robber.stealDiamond();
             } else if (action.equals("exit")) {

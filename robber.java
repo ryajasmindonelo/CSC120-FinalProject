@@ -1,26 +1,29 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class robber {
-    private boolean hasWeapon;
+    private List<String> weapons;
     private boolean hasDiamond;
 
     public robber() {
-        this.hasWeapon = false;
+        this.weapons = new ArrayList<>();
         this.hasDiamond = false;
     }
 
-    public void grab(String weapon) {
-        if (hasWeapon) {
-            System.out.println("You already have a weapon and cannot grab another.");
+    public void grab(String item) {
+        if (weapons.contains(item.toLowerCase())) {
+            System.out.println("You already have " + item + ".");
         } else {
-            System.out.println("Grabbing " + weapon);
-            this.hasWeapon = true;
+            System.out.println("Grabbing " + item);
+            weapons.add(item.toLowerCase());
         }
     }
 
-    public void attack(String weapon) {
-        if (hasWeapon) {
-            System.out.println("Attacking using " + weapon);
+    public void attack(String weaponToUse) {
+        if (weapons.contains(weaponToUse.toLowerCase())) {
+            System.out.println("Attacking using " + weaponToUse);
         } else {
-            System.out.println("You have no weapon to attack with!");
+            System.out.println("You don't have " + weaponToUse + "! You need to grab it first.");
         }
     }
 
