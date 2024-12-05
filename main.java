@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Main {
 
-
     public static void main(String[] args) {
         Room [][] rooms = new Room[8][6];
         for (int col = 0; col < 2; col ++) {
@@ -118,7 +117,7 @@ public class Main {
         String direction = "";
 
 
-        System.out.println("You have entered the game! You may go in any direction");
+        System.out.println("You have entered the game!! Yay You may go in any direction");
         while (!direction.equals("exit")) {
             direction = sc.nextLine().toLowerCase();
             if (direction.equals("north")) {
