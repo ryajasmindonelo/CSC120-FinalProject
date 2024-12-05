@@ -1,7 +1,17 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
+        ArrayList<ArrayList<String>> rooms = new ArrayList<>();
+        for (int i = 0; i < 8; i++) {  // 8 rows
+            ArrayList<String> row = new ArrayList<>();
+            for (int j = 0; j < 6; j++) {  // 6 columns
+                row.add("Room (" + i + ", " + j + ")");
+            }
+            rooms.add(row);
+        }
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Welcome");
@@ -26,33 +36,56 @@ public class Main {
 
         robber robber = new robber();
 
-        String action = "";
-        while (!action.equalsIgnoreCase("exit")) {
-            System.out.println("\nWhat would you like to do?");
-            System.out.println("Options: 'walk', 'grab', 'attack', 'steal', 'exit'");
-            action = sc.nextLine().toLowerCase();
 
-            if (action.equals("walk")) {
-                System.out.println("Choose a direction (North, South, East, West):");
-                String direction = sc.nextLine();
-                robber.walk(direction);
-            } else if (action.equals("grab")) {
-                System.out.println("What would you like to grab?");
-                String item = sc.nextLine();
-                robber.grab(item);
-            } else if (action.equals("attack")) {
-                System.out.println("What are you attacking with?");
-                String weaponToUse = sc.nextLine();
-                robber.attack(weaponToUse);
-            } else if (action.equals("steal")) {
-                robber.stealDiamond();
-            } else if (action.equals("exit")) {
-                System.out.println("Exiting the game. Goodbye!");
-            } else {
-                System.out.println("Invalid action. Please choose: 'walk', 'grab', 'attack', 'steal', or 'exit'.");
+        String direction = "";
+
+
+        System.out.println("You have entered the game! You may go in any direction");
+        while (!direction.equals("exit")) {
+            direction = sc.nextLine().toLowerCase();
+            if (direction.equals("north")) {
+                robber.moveNorth();
+            }
+            if (direction.equals("east")) {
+                robber.moveEast();
+            }
+            if (direction.equals("west")) {
+                robber.moveWest();
+            }
+            if (direction.equals("south")) {
+                robber.moveSouth();
             }
         }
 
-        sc.close();
+
+        // while (!action.equalsIgnoreCase("exit")) {
+        //     System.out.println("\nWhat would you like to do?");
+        //     System.out.println("Options: 'walk', 'grab', 'attack', 'steal', 'exit'");
+        //     action = sc.nextLine().toLowerCase();
+            
+
+        //     if (action.equals("walk")) {
+        //         System.out.println("Choose a direction (North, South, East, West):");
+        //         String direction = sc.nextLine();
+        //         robber.walk(direction);
+
+        //     } else if (action.equals("grab")) {
+        //         System.out.println("What would you like to grab?");
+        //         String item = sc.nextLine();
+        //         robber.grab(item);
+        //     } else if (action.equals("attack")) {
+        //         System.out.println("What are you attacking with?");
+        //         String weaponToUse = sc.nextLine();
+        //         robber.attack(weaponToUse);
+        //     } else if (action.equals("steal")) {
+        //         robber.stealDiamond();
+        //     } else if (action.equals("exit")) {
+        //         System.out.println("Exiting the game. Goodbye!");
+        //     } else {
+        //         System.out.println("Invalid action. Please choose: 'walk', 'grab', 'attack', 'steal', or 'exit'.");
+        //     }
+        // }
+
+        // sc.close();
     }
 }

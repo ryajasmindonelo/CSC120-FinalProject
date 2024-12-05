@@ -4,10 +4,15 @@ import java.util.List;
 public class robber {
     private List<String> weapons;
     private boolean hasDiamond;
+    private int currentRow;
+    private int currentCol;
+    
 
     public robber() {
         this.weapons = new ArrayList<>();
         this.hasDiamond = false;
+        this.currentRow = 0;
+        this.currentCol = 0;
     }
 
     public void grab(String item) {
@@ -27,16 +32,52 @@ public class robber {
         }
     }
 
-    public boolean walk(String direction) {
-        if (direction.equalsIgnoreCase("north") || direction.equalsIgnoreCase("south") ||
-            direction.equalsIgnoreCase("east") || direction.equalsIgnoreCase("west")) {
-            System.out.println("Walking " + direction);
-            return true;
+    public void moveNorth() {
+        if(currentRow>0) {
+            currentRow--;
+            System.out.println("You are in" + currentCol + ", " + currentRow + "Room");
         } else {
-            System.out.println("Invalid direction. Please choose: North, South, East, or West.");
-            return false;
+            System.out.println("You've run into a wall!'");
         }
     }
+
+    public void moveSouth() {
+        if(currentRow<5) {
+            currentRow++;
+            System.out.println("You are in" + currentCol + ", " + currentRow + "Room");
+        } else {
+            System.out.println("You've run into a wall!'");
+        }
+    }
+
+    public void moveEast() {
+        if(currentCol<7) {
+            currentCol++;
+            System.out.println("You are in" + currentCol + ", " + currentRow + "Room");
+        } else {
+            System.out.println("You've run into a wall!'");
+        }
+    }
+
+    public void moveWest() {
+        if(currentCol>0) {
+            currentCol--;
+            System.out.println("You are in" + currentCol + ", " + currentRow + "Room");
+        } else {
+            System.out.println("You've run into a wall!'");
+        }
+    }
+
+    // public boolean walk(String direction) {
+    //     if (direction.equalsIgnoreCase("north") || direction.equalsIgnoreCase("south") ||
+    //         direction.equalsIgnoreCase("east") || direction.equalsIgnoreCase("west")) {
+    //         System.out.println("Walking " + direction);
+    //         return true;
+    //     } else {
+    //         System.out.println("Invalid direction. Please choose: North, South, East, or West.");
+    //         return false;
+    //     }
+    // }
 
     public void stealDiamond() {
         if (!hasDiamond) {
