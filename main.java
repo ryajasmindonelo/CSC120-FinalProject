@@ -1,17 +1,95 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
+
     public static void main(String[] args) {
-        ArrayList<ArrayList<String>> rooms = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {  // 8 rows
-            ArrayList<String> row = new ArrayList<>();
-            for (int j = 0; j < 6; j++) {  // 6 columns
-                row.add("Room (" + i + ", " + j + ")");
+        Room [][] rooms = new Room[8][6];
+        for (int col = 0; col < 2; col ++) {
+            for (int row = 0; row < 2; row++) {
+                rooms[col][row] = new Room("Ancient Weapons");
             }
-            rooms.add(row);
+            
         }
+        for (int col = 2; col < 4; col ++) {
+            for (int row = 0; row < 2; row++) {
+                rooms[col][row] = new Room("Bones", "dinosaur");
+            }
+            
+        }
+        for (int col = 4; col < 6; col ++) {
+            for (int row = 0; row < 2; row++) {
+                rooms[col][row] = new Room("Geology and Gems");
+            }
+            
+        }
+        for (int col = 6; col < 8; col ++) {
+            for (int row = 0; row < 2; row++) {
+                rooms[col][row] = new Room("Butterfly Pavillion", "poison butterflies");
+            }
+            
+        }
+        for (int col = 0; col < 2; col ++) {
+            for (int row = 2; row < 4; row++) {
+                rooms[col][row] = null;
+            }
+            
+        }
+        for (int col = 2; col < 4; col ++) {
+            for (int row = 2; row < 4; row++) {
+                rooms[col][row] = new Room("Mammals", "lion");
+            }
+            
+        }
+        for (int col = 4; col < 6; col ++) {
+            for (int row = 2; row < 4; row++) {
+                rooms[col][row] = null;
+            }
+            
+        }
+
+        for (int col = 6; col < 8; col ++) {
+            for (int row = 2; row < 4; row++) {
+                rooms[col][row] = new Room("Insect Zoo", "spiders");
+            }
+            
+        }
+
+        for (int col = 0; col < 2; col ++) {
+            for (int row = 4; row < 6; row++) {
+                rooms[col][row] = new Room("Planetarium", "comet");
+            }
+            
+        }
+
+        for (int col = 2; col < 4; col ++) {
+            for (int row = 4; row < 6; row++) {
+                rooms[col][row] = new Room("Marine Animals", "megalodon");
+            }
+            
+        }
+
+        for (int col = 4; col < 6; col ++) {
+            for (int row = 4; row < 6; row++) {
+                rooms[col][row] = new Room("Precious Items", "lasers");
+            }
+            
+        }
+
+        for (int col = 6; col < 8; col ++) {
+            for (int row = 4; row < 6; row++) {
+                rooms[col][row] = new Room("Ancient Egypt", "mummy");
+            }
+            
+        }
+        
+        // for (int i = 0; i < 8; i++) {  // 8 rows
+        //     ArrayList<String> row = new ArrayList<>();
+        //     for (int j = 0; j < 6; j++) {  // 6 columns
+        //         row.add("Room (" + i + ", " + j + ")");
+        //     }
+        //     rooms.add(row);
+        // }
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Welcome");
@@ -34,7 +112,7 @@ public class Main {
 
         System.out.println("Storyline: INTRODUCTION TO GAME.");
 
-        robber robber = new robber();
+        Robber robber = new Robber();
 
 
         String direction = "";
@@ -45,16 +123,42 @@ public class Main {
             direction = sc.nextLine().toLowerCase();
             if (direction.equals("north")) {
                 robber.moveNorth();
+                if (rooms[robber.getCurrentCol()][robber.getCurrentRow()] == null) {
+                    robber.moveSouth();
+                    System.out.println("You've run into a wall!");
+                }
             }
             if (direction.equals("east")) {
                 robber.moveEast();
+                if (rooms[robber.getCurrentCol()][robber.getCurrentRow()] == null) {
+                    robber.moveWest();
+                    System.out.println("You've run into a wall!");
+                }
             }
             if (direction.equals("west")) {
                 robber.moveWest();
+                if (rooms[robber.getCurrentCol()][robber.getCurrentRow()] == null) {
+                    robber.moveEast();
+                    System.out.println("You've run into a wall!");
+                }
             }
             if (direction.equals("south")) {
                 robber.moveSouth();
+                if (rooms[robber.getCurrentCol()][robber.getCurrentRow()] == null) {
+                    robber.moveNorth();
+                    System.out.println("You've run into a wall!");
+                }
+
             }
+            System.out.println("You are in the " + rooms[robber.getCurrentCol()][robber.getCurrentRow()].getName() + " Room.");
+
+                // try {
+                //     // Attempt to access the room and print its name
+                //     System.out.println("You are in the " + rooms[robber.getCurrentCol()][robber.getCurrentRow()].getName() + " Room.");
+                // } catch (NullPointerException e) {
+                //     // Handle the case where the room is null
+                //     System.out.println("You've run into a wall!");
+                // }
         }
 
 

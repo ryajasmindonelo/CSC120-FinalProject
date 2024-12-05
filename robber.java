@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class robber {
+public class Robber {
     private List<String> weapons;
     private boolean hasDiamond;
     private int currentRow;
     private int currentCol;
     
 
-    public robber() {
+    public Robber() {
         this.weapons = new ArrayList<>();
         this.hasDiamond = false;
         this.currentRow = 0;
@@ -24,6 +24,15 @@ public class robber {
         }
     }
 
+    public int getCurrentRow() {
+        return currentRow;
+    }
+    
+    // Getter for currentCol
+    public int getCurrentCol() {
+        return currentCol;
+    }
+
     public void attack(String weaponToUse) {
         if (weapons.contains(weaponToUse.toLowerCase())) {
             System.out.println("Attacking using " + weaponToUse);
@@ -35,36 +44,32 @@ public class robber {
     public void moveNorth() {
         if(currentRow>0) {
             currentRow--;
-            System.out.println("You are in" + currentCol + ", " + currentRow + "Room");
         } else {
-            System.out.println("You've run into a wall!'");
+            System.out.println("You've run into a wall!");
         }
     }
 
     public void moveSouth() {
         if(currentRow<5) {
             currentRow++;
-            System.out.println("You are in" + currentCol + ", " + currentRow + "Room");
         } else {
-            System.out.println("You've run into a wall!'");
+            System.out.println("You've run into a wall!");
         }
     }
 
     public void moveEast() {
         if(currentCol<7) {
             currentCol++;
-            System.out.println("You are in" + currentCol + ", " + currentRow + "Room");
         } else {
-            System.out.println("You've run into a wall!'");
+            System.out.println("You've run into a wall!");
         }
     }
 
     public void moveWest() {
         if(currentCol>0) {
             currentCol--;
-            System.out.println("You are in" + currentCol + ", " + currentRow + "Room");
         } else {
-            System.out.println("You've run into a wall!'");
+            System.out.println("You've run into a wall!");
         }
     }
 
