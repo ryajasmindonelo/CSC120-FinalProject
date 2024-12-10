@@ -2,26 +2,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Robber {
-    private List<String> weapons;
-    private boolean hasDiamond;
+    private List<Item> inventory;
     private int currentRow;
     private int currentCol;
     
 
     public Robber() {
-        this.weapons = new ArrayList<>();
-        this.hasDiamond = false;
+        this.inventory = inventory;
         this.currentRow = 0;
         this.currentCol = 0;
     }
 
-    public void grab(String item) {
-        if (weapons.contains(item.toLowerCase())) {
-            System.out.println("You already have " + item + ".");
-        } else {
-            System.out.println("Grabbing " + item);
-            weapons.add(item.toLowerCase());
+    //so what will happen is in main i check if their string is an item in the array list
+
+    public void grab(Item item, List<Item> inventory) {
+        if (inventory.size() < 3) {
+            System.out.println("The " + item.getName() + " is now in your inventory. Use it well.");
+            inventory.add(item);
         }
+        else {
+            System.out.println("You do not have enough space to grab");
+        }
+
     }
 
     public int getCurrentRow() {
@@ -33,63 +35,34 @@ public class Robber {
         return currentCol;
     }
 
-    public void attack(String weaponToUse) {
-        if (weapons.contains(weaponToUse.toLowerCase())) {
-            System.out.println("Attacking using " + weaponToUse);
-        } else {
-            System.out.println("You don't have " + weaponToUse + "! You need to grab it first.");
+    public void attack(Item weaponToUse, Monster monster) {
+        System.out.println("You attack using the " + weaponToUse.getName() + ". You have done damage!");
+        if (weaponToUse.getMaxDamage() == 1) {
+            monster.changeLives(1);
+        }
+        if (weaponToUse.getMaxDamage() == 2) {
+            monster.changeLives(2);
+        }
+        if (weaponToUse.getMaxDamage() == 3) {
+            monster.changeLives(3);
         }
     }
 
     public void moveNorth() {
-        if(currentRow>0) {
-            currentRow--;
-        } else {
-            System.out.println("You've run into a wall!");
-        }
+        currentRow--;
     }
 
     public void moveSouth() {
-        if(currentRow<5) {
-            currentRow++;
-        } else {
-            System.out.println("You've run into a wall!");
-        }
+        currentRow++;
     }
 
     public void moveEast() {
-        if(currentCol<7) {
-            currentCol++;
-        } else {
-            System.out.println("You've run into a wall!");
-        }
+        currentCol++;
     }
 
     public void moveWest() {
-        if(currentCol>0) {
-            currentCol--;
-        } else {
-            System.out.println("You've run into a wall!");
-        }
+        currentCol--;
     }
 
-    // public boolean walk(String direction) {
-    //     if (direction.equalsIgnoreCase("north") || direction.equalsIgnoreCase("south") ||
-    //         direction.equalsIgnoreCase("east") || direction.equalsIgnoreCase("west")) {
-    //         System.out.println("Walking " + direction);
-    //         return true;
-    //     } else {
-    //         System.out.println("Invalid direction. Please choose: North, South, East, or West.");
-    //         return false;
-    //     }
-    // }
 
-    public void stealDiamond() {
-        if (!hasDiamond) {
-            System.out.println("You successfully steal the Hope Diamond!");
-            this.hasDiamond = true;
-        } else {
-            System.out.println("You already have the Hope Diamond!");
-        }
-    }
 }
